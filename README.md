@@ -89,3 +89,73 @@ The plot indicates that teams securing Atakhan have a substantially higher win r
 |          1 |     20.5682 |     63295.7 |    35672.1 |        33566.4 |      1666.68 |     8.33663 |
 
 This table compares average team-level statistics for matches where Atakhan was not secured (0) versus secured (1). Teams that secured Atakhan tend to have higher team kills, greater total and mid-game gold, and a positive experience difference at 20 minutes, suggesting that Atakhan is associated with stronger early and overall in-game performance. As atakhan spawns at 20 minutes, we can also infer that teams that secure atakhan tend to have more gold and experience, meaning that they were already stronger than their opponents before atakhan was secured.
+
+## Assessment of Missingness
+### NMAR Analysis
+
+There are several columns in this dataset that contain missing values, including `playername`, `playerid`, `champion`, and draft-related columns such as `pick1`, `pick2`, and `pick3`. However, this missingness is structural rather than NMAR. These columns are undefined for certain rows by design: team-level rows do not correspond to individual players and therefore cannot have player-specific attributes, while player-level rows do not contain team draft order information.
+
+Similarly, many objective-related columns (such as `firstdragon`, `dragons`, and `void_grub`) are team-level statistics and are therefore structurally missing for individual players. In these cases, the missingness does not depend on the unobserved value itself, but rather on the role of the row (team vs. player).
+
+It is important to distinguish this from NMAR (Not Missing At Random) missingness, where the probability that a value is missing depends on the value itself. Based on the available data, there is no strong evidence that any column in this dataset is truly NMAR. Instead, most missingness can be explained by observed variables such as row type (team vs. player) or league, making it either structural or MAR.
+
+For example, the missingness of atakhans is largely structural, as Atakhan is a team-level objective and is undefined for player-level rows. However, even within this constraint, we observe that the missingness of atakhans depends on league but not on side, indicating MAR rather than NMAR behavior.
+
+### Missingness Dependency
+
+The `atakhans` column contains missing values primarily because Atakhan is a team-level objective, and therefore undefined for player-level rows. This suggests the missingness is structural rather than NMAR.
+
+To verify whether missingness depends on other observed variables, I conducted permutation tests using the variance of missingness rates across groups as the test statistic. Specifically, we tested whether the missingness of `atakhans` depends on league or side.
+
+First, I will show you the Missingness vs. League and then the Missingness vs. Side
+
+Null Hypothesis: The missingness of the `atakhans` column is independent of league. Any observed differences in missingness rates across leagues are due to random chance.
+
+Alternative Hypothesis: The missingness of the `atakhans` column depends on league, meaning some leagues have systematically higher or lower missingness rates than others.
+
+| league      |   atakhan_missing = False |   atakhan_missing = True |
+|:------------|--------------------------:|-------------------------:|
+| AL          |                0.0323114  |               0.0322006  |
+| ASI         |                0.00463167 |               0.00461579 |
+| Asia Master |                0.01985    |               0.019782   |
+| CD          |                0.0328628  |               0.0331458  |
+| CT          |                0.0055139  |               0.00549499 |
+| EBL         |                0.0210631  |               0.0209909  |
+| EM          |                0.0485223  |               0.0483559  |
+| EWC         |                0.00363917 |               0.00362669 |
+| FST         |                0.00385973 |               0.00384649 |
+| HC          |                0.0220556  |               0.02198    |
+| HLL         |                0.0242611  |               0.0243098  |
+| HM          |                0.0209528  |               0.020881   |
+| HW          |                0.0125717  |               0.0125286  |
+| IC          |                0.00187472 |               0.0018683  |
+| LAS         |                0.0539259  |               0.053741   |
+| LCK         |                0.061094   |               0.0610164  |
+| LCKC        |                0.0594398  |               0.0596316  |
+| LCP         |                0.0320909  |               0.0319808  |
+| LEC         |                0.033745   |               0.0336293  |
+| LFL         |                0.0348478  |               0.0349921  |
+| LFL2        |                0.0256948  |               0.0256066  |
+| LIT         |                0.0149978  |               0.015342   |
+| LJL         |                0.0409131  |               0.0411685  |
+| LPLOL       |                0.0176445  |               0.017584   |
+| LRN         |                0.016652   |               0.0165949  |
+| LRS         |                0.0153286  |               0.0152761  |
+| LTA         |                0.00441112 |               0.00439599 |
+| LTA N       |                0.0234892  |               0.0234087  |
+| LTA S       |                0.0243714  |               0.0244197  |
+| LVP SL      |                0.0286723  |               0.0291015  |
+| MSI         |                0.00882223 |               0.00879198 |
+| NACL        |                0.0304367  |               0.0303323  |
+| NEXO        |                0.016652   |               0.0169905  |
+| NLC         |                0.0273489  |               0.027387   |
+| PCS         |                0.0334142  |               0.0332996  |
+| PRM         |                0.0334142  |               0.0332996  |
+| PRMP        |                0.00805029 |               0.00802268 |
+| RL          |                0.0264667  |               0.0263759  |
+| ROL         |                0.0229378  |               0.0228592  |
+| TCL         |                0.0263564  |               0.0263979  |
+| VCS         |                0.0155492  |               0.0154959  |
+| WLDs        |                0.00926334 |               0.00923158 |
+
+I used the variance of missingness rates across leagues as the test statistic, since larger variance would indicate league-specific missingness patterns.
