@@ -160,9 +160,11 @@ Alternative Hypothesis: The missingness of the `atakhans` column depends on leag
 
 I used the variance of missingness rates across leagues as the test statistic, since larger variance would indicate league-specific missingness patterns.
 
+The observed test statistic was 7.61 × 10⁻⁷, with a p-value of 1.0. The permutation distribution below shows that the observed statistic is well within the range expected under the null hypothesis.
 <iframe
   src="assets/league_missingness.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+Because the p-value is much larger than a typical significance level (e.g. 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that missingness in atakhans depends on league. Instead, missingness appears consistent across leagues, supporting the interpretation that it is structural.
