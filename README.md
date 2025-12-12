@@ -1,8 +1,8 @@
 # League of Legends Atakhan Relevance Analysis
 Conducted by: Andrew Youn
 
-##Introduction
-###League of Legends
+## Introduction
+### League of Legends
 League of Legends (LoL) is one of the most popular Massive Multipler Online (MMO) games in history. Released on October 27. 2009 by Riot Games, LoL quickly took the world by storm and amassed nearly 30-40 million active players daily as of 2025. Beyond casual play, the game has also established a massive professional esports scene, with regional leagues and international tournaments watched by millions.
 
 In League of Legends, two teams of five players compete on a map with the primary objective of destroying the opposing team’s Nexus, a central structure located within their base. To reach the Nexus, teams must strategically work together to destroy defensive structures, secure neutral objectives, and gain advantages in gold, experience, and map control. Matches require a combination of mechanical skill, teamwork, and strategic decision-making, making LoL a rich environment for data-driven analysis.
