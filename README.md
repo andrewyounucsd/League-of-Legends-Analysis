@@ -238,10 +238,56 @@ The model uses the following features, all of which would be known by 20 minutes
 
 There are no ordinal features in this model.
 
-To prepare the data, I used a ColumnTransformer within a single sklearn Pipeline. The side feature was one-hot encoded using OneHotEncoder since it is categorical. The quantitative features were passed through a SimpleImputer with a median strategy to handle missing values. All preprocessing steps were fit only on the training data to avoid data leakage.
+To prepare the data, we used a ColumnTransformer within a single sklearn Pipeline. The side feature was one-hot encoded using OneHotEncoder since it is categorical. The quantitative features were passed through a SimpleImputer with a median strategy to handle missing values. All preprocessing steps were fit only on the training data to avoid data leakage.
 
-I split the data into training and testing sets using a 70/30 train–test split, stratified on the response variable to preserve the win/loss balance. I then trained the model on the training set and evaluated it on the held-out test set using accuracy as the evaluation metric.
+We split the data into training and testing sets using a 70/30 train–test split, stratified on the response variable to preserve the win/loss balance. We then trained the model on the training set and evaluated it on the held-out test set using accuracy as the evaluation metric.
 
 The baseline model achieved an accuracy of approximately 82.5% on the test set. I believe this is a solid baseline result, especially given the simplicity of the model and the limited feature set. While the model is not perfect, it performs significantly better than random guessing and captures meaningful relationships between early-game team performance (gold, kills, experience) and match outcomes. This makes it a strong starting point for further feature engineering and model improvement in later steps.
 
 ## Final Model
+
+For our final model, we built on the baseline logistic regression by adding two engineered features that better capture a team’s in-game advantage at the 20-minute mark. These features were designed based on how League of Legends games actually progress, rather than simply transforming existing variables without meaning.
+
+The first feature we added was `gold_lead_ratio`, which measures a team’s gold at 20 minutes as a proportion of the total gold between both teams. Gold advantage is one of the strongest indicators of tempo and control in League of Legends, and using a ratio helps normalize this signal across games with different overall gold levels. This makes the feature more comparable across matches than raw gold alone and better reflects relative advantage rather than absolute numbers.
+
+The second engineered feature was `abs_xpdiffat20`, the absolute value of experience difference at 20 minutes. While experience difference already appears in the data, taking the absolute value captures how large the experience gap is, regardless of which team is ahead. Large experience gaps often indicate lopsided map control or successful fights, both of which strongly influence the likelihood of winning, even if the direction of the lead is already partially captured elsewhere.
+
+In total, the final model uses:
+
+- One nominal feature: `side`, which is one-hot encoded to represent blue side vs. red side.
+
+- Five quantitative features: `atakhans`, `killsat20`, `gold_lead_ratio`, `xpdiffat20`, and `abs_xpdiffat20`.
+- 
+All numeric features are median-imputed to handle missing values and standardized using a StandardScaler so they are on comparable scales before modeling.
+
+We continued to use logistic regression as our modeling algorithm, since the task is a binary classification problem and logistic regression provides a strong, interpretable baseline for predicting win/loss outcomes. To improve performance, we tuned two key hyperparameters:
+
+The regularization strength C
+
+The penalty type (L1 vs. L2)
+
+Hyperparameter tuning was performed using GridSearchCV with 5-fold cross-validation, optimizing for accuracy. The best-performing configuration used an L1 penalty with C = 0.01, which suggests that mild regularization helps prevent overfitting while allowing the most informative features to contribute to the prediction.
+
+Our final model achieved an accuracy of 0.831, compared to 0.825 for the baseline model. While the improvement isn't the greatest, it is consistent and meaningful given that the baseline was already fairly strong. More importantly, the improvement comes from features that align well with the game’s data-generating process—relative gold advantage and the magnitude of experience gaps—rather than arbitrary transformations. This gives us more confidence that the model is learning meaningful in-game signals rather than noise.
+
+Overall, the final model improves upon the baseline both in performance and in how well its features reflect the mechanics of professional League of Legends gameplay.
+
+## Fairness Analysis
+
+For our fairness analysis, we compare Blue-side teams (Group X) and Red-side teams (Group Y). These groups are meaningful because side selection in League of Legends is known to affect gameplay (e.g., map orientation, draft order), so it is important to check whether our model performs worse for one side than the other.
+
+We use accuracy as our evaluation metric, consistent with the metric used throughout our modeling process. Accuracy is appropriate here because the outcome variable (`result`) is binary and relatively balanced, and because we are interested in whether the model makes correct predictions at similar rates for both groups.
+
+Null Hypothesis: The model is fair with respect to side. The prediction accuracy for Blue-side teams and Red-side teams is approximately the same, and any observed difference is due to random chance.
+
+Alternative Hypothesis: The model is unfair. The prediction accuracy for Red-side teams is lower than the prediction accuracy for Blue-side teams.
+
+This is a one-sided hypothesis test, since we are specifically testing whether the model performs worse for Red-side teams.
+
+Our test statistic is the difference in accuracy between the two groups, a larger positive value would indicate better performance for Blue-side teams relative to Red-side teams.
+
+We use a permutation test to generate the null distribution by randomly shuffling the side labels while keeping the predictions and true outcomes fixed. This approach is appropriate because it simulates the scenario where side membership has no relationship to model performance. We use a significance level of 0.05.
+
+Since the p-value (0.591) is much larger than our significance level of 0.05, we fail to reject the null hypothesis. There is no statistically significant evidence that our model performs worse for Red-side teams than for Blue-side teams.
+
+Based on this analysis, our final model appears to be fair with respect to side, as its predictive accuracy is similar for both groups. While small differences in accuracy exist, they are consistent with what we would expect due to random variation rather than systematic bias.
