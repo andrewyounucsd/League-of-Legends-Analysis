@@ -62,9 +62,14 @@ As stated previously, only 14 columns are being kept as they are the only ones t
 
 You will see that the both the columns containing atakhan are empty, however this isn't a problem because these columns are only represented in team rows. We will be mainly taking a look at the team-rows represented in the `position` columns as "team", however for now, in order to do our univariate and bivariate analysis, we must keep all the rows.  
 
+### Univariate Analysis
 <iframe
   src="assets/goldat20_hist.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+
+The distribution of total gold at 20 minutes exhibits two clearly distinct clusters, corresponding to individual player-level rows and team-level rows. Individual gold values are concentrated between approximately 4,000 and 10,000 gold, while team-level gold values range from roughly 30,000 to 45,000 gold. These two distributions reflect fundamentally different units of analysis and therefore should not be treated as a single population.
+
+Neither distribution appears to be normally distributed. Both exhibit right skewness and natural lower bounds, violating the symmetry and unboundedness assumptions of a normal distribution. As a result, summary statistics and modeling approaches should account for this non-normality and the mixed granularity of the data.
