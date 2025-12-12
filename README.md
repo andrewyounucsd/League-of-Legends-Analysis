@@ -159,3 +159,10 @@ Alternative Hypothesis: The missingness of the `atakhans` column depends on leag
 | WLDs        |                0.00926334 |               0.00923158 |
 
 I used the variance of missingness rates across leagues as the test statistic, since larger variance would indicate league-specific missingness patterns.
+
+<iframe
+  src="assets/league_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
