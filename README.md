@@ -69,7 +69,14 @@ You will see that the both the columns containing atakhan are empty, however thi
   height="600"
   frameborder="0"
 ></iframe>
-
 The distribution of total gold at 20 minutes exhibits two clearly distinct clusters, corresponding to individual player-level rows and team-level rows. Individual gold values are concentrated between approximately 4,000 and 10,000 gold, while team-level gold values range from roughly 30,000 to 45,000 gold. These two distributions reflect fundamentally different units of analysis and therefore should not be treated as a single population.
 
 Neither distribution appears to be normally distributed. Both exhibit right skewness and natural lower bounds, violating the symmetry and unboundedness assumptions of a normal distribution. As a result, summary statistics and modeling approaches should account for this non-normality and the mixed granularity of the data.
+
+### Bivariate Analysis
+<iframe
+  src="assets/atakhan_wl.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
