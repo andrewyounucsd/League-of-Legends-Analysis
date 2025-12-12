@@ -48,8 +48,8 @@ The dataset provided by Orcale's Elixir focuses on professional League of Legend
 
 
 
-##Data Cleaning and Exploratory Data Analysis
-###Data Cleaning
+## Data Cleaning and Exploratory Data Analysis
+### Data Cleaning
 As stated previously, only 14 columns are being kept as they are the only ones that are relevant to the analysis. In this analysis we will be focusing on games in which the matches were completed, meaning we will get rid of all the rows where the games did not finish which was done by making sure all values in the column `datacompleteness` were complete. 
 
 | gameid           | datacompleteness   | league   | position   | side   |   result |   teamkills |   atakhans |   opp_atakhans |   totalgold |   goldat20 |   opp_goldat20 |   xpdiffat20 |   killsat20 |
