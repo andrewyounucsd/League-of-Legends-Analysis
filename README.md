@@ -61,3 +61,10 @@ As stated previously, only 14 columns are being kept as they are the only ones t
 | LOLTMNT03_179647 | complete           | LFL2     | sup        | Blue   |        0 |           3 |        nan |            nan |        5719 |       4220 |           4530 |          314 |           0 |
 
 You will see that the both the columns containing atakhan are empty, however this isn't a problem because these columns are only represented in team rows. We will be mainly taking a look at the team-rows represented in the `position` columns as "team", however for now, in order to do our univariate and bivariate analysis, we must keep all the rows.  
+
+<iframe
+  src="assets/goldat20_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
