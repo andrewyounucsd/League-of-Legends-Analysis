@@ -201,3 +201,14 @@ Null Hypothesis: The probability of winning a match is the same for teams that s
 Alternative Hypothesis: The probability of winning a match differs between teams that secure Atakhan and teams that do not secure Atakhan.
 
 We used the difference in win rates between the two groups (teams that secured Atakhan minus teams that did not) as the test statistic. This statistic is appropriate because our research question directly asks whether securing Atakhan is associated with a higher likelihood of winning, and win rate is a natural and interpretable measure of match success. We used a significance level of 0.05.
+
+<iframe
+  src="assets/hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The observed difference in win rates between teams that secured Atakhan and teams that did not was 0.572, indicating that teams securing Atakhan won approximately 57 percentage points more often than teams that did not. Using a permutation test with the difference in win rates as the test statistic, we obtained a p-value of 0.0.
+
+Because this p-value is well below the chosen significance level of 0.05, we reject the null hypothesis. This result provides strong evidence that the difference in win rates between the two groups is unlikely to be due to random chance alone. While this analysis does not establish a causal relationship, it suggests a strong association between securing Atakhan and a higher likelihood of winning in professional League of Legends matches.
