@@ -36,11 +36,11 @@ The dataset provided by Orcale's Elixir focuses on professional League of Legend
   
 - "opp_atakhans": Represents if the enemy team secured atakhan as a boolean. 0 Means they didn't secure Atakhan, 1 means they did secure Atakhan"
   
-- "totalgold": Represents the total amount of money that was generated in a match. This column is very important as gold is the main way players in League of Legends become stronger. Generally, the more gold a team has, the stronger they are.
+- "totalgold": Represents the total amount of money that was generated in a match. This column is very important as gold is the main way players in League of Legends become stronger. Generally, the more gold a team has, the stronger they are. Individual players will have their total gold amounts and the team row will have the entire gold generated from the team summed up.
   
-- "goldat20": Represents the total amount of money that was generated in a match 20 minutes into the game. The reason this column is so relevant to our analysis is because the objective Atakhans spawns into the game at 20 minutes, meaning this statistic is very important to consider.
+- "goldat20": Represents the total amount of money that was generated in a match 20 minutes into the game. The reason this column is so relevant to our analysis is because the objective Atakhans spawns into the game at 20 minutes, meaning this statistic is very important to consider. The rows are repsented identically to that of totalgold.
   
-- "opp_goldat20": Represents the total amount of money that was generated in a match by the enemy team 20 minutes into the game. Identically important to our analysis like the previous column.
+- "opp_goldat20": Represents the total amount of money that was generated in a match by the enemy team 20 minutes into the game. Identically important to our analysis like the previous column. The rows are repsented identically to that of totalgold.
   
 - "xpdiffat20": Represents the difference in total Experience in a match at 20 minutes. Experience (xp) is another means of getting stronger in League of Legends. By having more experience levels, the characters in the game are able to get stronger spells, more health points, and many other benefits. A positive integer means the player has more experience and a negative integer means the player has less experience than their counterpart position.
 
