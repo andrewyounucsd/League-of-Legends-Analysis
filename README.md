@@ -174,7 +174,7 @@ Next, I examined whether the missingness of the `atakhans` column depends on a t
 
 Null Hypothesis: The missingness of the `atakhans` column is independent of side. Any observed differences in missingness rates between Blue side and Red side are due to random chance.
 
-Alternative Hypothesis: The missingness of the `atakhans column` depends on side, meaning one side (Blue or Red) has systematically higher or lower missingness than the other.
+Alternative Hypothesis: The missingness of the `atakhans` column depends on side, meaning one side (Blue or Red) has systematically higher or lower missingness than the other.
 
 | side   |   atakhan_missing = False |   atakhan_missing = True |
 |:-------|--------------------------:|-------------------------:|
