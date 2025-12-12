@@ -167,4 +167,26 @@ The observed test statistic was 7.61 × 10⁻⁷, with a p-value of 1.0. The per
   height="600"
   frameborder="0"
 ></iframe>
-Because the p-value is much larger than a typical significance level (e.g. 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that missingness in atakhans depends on league. Instead, missingness appears consistent across leagues, supporting the interpretation that it is structural.
+
+Because the p-value is much larger than a typical significance level (e.g. 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that missingness in `atakhans` depends on league. Instead, missingness appears consistent across leagues, supporting the interpretation that it is structural.
+
+Next, I examined whether the missingness of the `atakhans` column depends on a team’s side (Blue or Red). As before, I conducted a permutation test using the variance of missingness rates across groups as the test statistic. Larger variance would indicate side-specific missingness patterns.
+
+Null Hypothesis: The missingness of the `atakhans` column is independent of side. Any observed differences in missingness rates between Blue side and Red side are due to random chance.
+
+Alternative Hypothesis: The missingness of the `atakhans column` depends on side, meaning one side (Blue or Red) has systematically higher or lower missingness than the other.
+
+| side   |   atakhan_missing = False |   atakhan_missing = True |
+|:-------|--------------------------:|-------------------------:|
+| Blue   |                       0.5 |                      0.5 |
+| Red    |                       0.5 |                      0.5 |
+
+The observed test statistic for this permutation test was 0, and the resulting p-value was 1.0. The permutation distribution shown below demonstrates that the observed statistic lies well within the range expected under the null hypothesis.
+<iframe
+  src="assets/side_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Because the p-value is much larger than a standard significance level (e.g., 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that the missingness of `atakhans` depends on side. In other words, missingness appears evenly distributed between Blue and Red sides, further supporting the conclusion that the missingness is structural rather than driven by gameplay factors.
