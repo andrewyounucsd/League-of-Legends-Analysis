@@ -80,3 +80,12 @@ Neither distribution appears to be normally distributed. Both exhibit right skew
   height="600"
   frameborder="0"
 ></iframe>
+The plot indicates that teams securing Atakhan have a substantially higher win rate than loss rate, with nearly four out of five games resulting in a win. While this does not establish causation, it suggests that securing Atakhan is strongly associated with match success in professional play.
+
+### Interesting Aggregates
+|   atakhans |   teamkills |   totalgold |   goldat20 |   opp_goldat20 |   xpdiffat20 |   killsat20 |
+|-----------:|------------:|------------:|-----------:|---------------:|-------------:|------------:|
+|          0 |     12.5073 |     55779.7 |    33680.8 |        35671.6 |     -1575.77 |     6.08912 |
+|          1 |     20.5682 |     63295.7 |    35672.1 |        33566.4 |      1666.68 |     8.33663 |
+
+This table compares average team-level statistics for matches where Atakhan was not secured (0) versus secured (1). Teams that secured Atakhan tend to have higher team kills, greater total and mid-game gold, and a positive experience difference at 20 minutes, suggesting that Atakhan is associated with stronger early and overall in-game performance. As atakhan spawns at 20 minutes, we can also infer that teams that secure atakhan tend to have more gold and experience, meaning that they were already stronger than their opponents before atakhan was secured.
