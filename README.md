@@ -58,6 +58,6 @@ As stated previously, only 14 columns are being kept as they are the only ones t
 | LOLTMNT03_179647 | complete           | LFL2     | jng        | Blue   |        0 |           3 |        nan |            nan |        7429 |       5668 |           7357 |        -1339 |           0 |
 | LOLTMNT03_179647 | complete           | LFL2     | mid        | Blue   |        0 |           3 |        nan |            nan |        9032 |       6332 |           7990 |        -1439 |           0 |
 | LOLTMNT03_179647 | complete           | LFL2     | bot        | Blue   |        0 |           3 |        nan |            nan |        9407 |       6782 |           8489 |        -1248 |           1 |
-| LOLTMNT03_179647 | complete           | LFL2     | sup        | Blue   |        0 |           3 |        nan |            nan |        5719 
+| LOLTMNT03_179647 | complete           | LFL2     | sup        | Blue   |        0 |           3 |        nan |            nan |        5719 |       4220 |           4530 |          314 |           0 |
 
 we will mainly be taking a look at the team-rows represented in the `position` columns as "team". 
