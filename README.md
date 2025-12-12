@@ -83,6 +83,7 @@ Neither distribution appears to be normally distributed. Both exhibit right skew
 The plot indicates that teams securing Atakhan have a substantially higher win rate than loss rate, with nearly four out of five games resulting in a win. While this does not establish causation, it suggests that securing Atakhan is strongly associated with match success in professional play.
 
 ### Interesting Aggregates
+
 |   atakhans |   teamkills |   totalgold |   goldat20 |   opp_goldat20 |   xpdiffat20 |   killsat20 |
 |-----------:|------------:|------------:|-----------:|---------------:|-------------:|------------:|
 |          0 |     12.5073 |     55779.7 |    33680.8 |        35671.6 |     -1575.77 |     6.08912 |
@@ -99,7 +100,7 @@ Similarly, many objective-related columns (such as `firstdragon`, `dragons`, and
 
 It is important to distinguish this from NMAR (Not Missing At Random) missingness, where the probability that a value is missing depends on the value itself. Based on the available data, there is no strong evidence that any column in this dataset is truly NMAR. Instead, most missingness can be explained by observed variables such as row type (team vs. player) or league, making it either structural or MAR.
 
-For example, the missingness of atakhans is largely structural, as Atakhan is a team-level objective and is undefined for player-level rows. However, even within this constraint, we observe that the missingness of atakhans depends on league but not on side, indicating MAR rather than NMAR behavior.
+For example, the missingness of atakhans is largely structural, as Atakhan is a team-level objective and is undefined for player-level rows. However, even within this constraint, we do not find evidence that missingness depends on league or side, which supports the idea that the missingness is largely structural.
 
 ### Missingness Dependency
 
