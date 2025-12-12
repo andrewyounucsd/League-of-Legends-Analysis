@@ -230,7 +230,7 @@ The model uses the following features, all of which would be known by 20 minutes
 
 - Nominal Features (1):
     - `side` (blue or red side)
-- Qualitative Features (4):
+- Qualitative/Numeric Features (4):
     - `atakhans` (whether the team secured it)
     - `killsat20` (number of kills at 20 minutes)
     - `goldat20` (total team gold at 20 minutes)
@@ -288,6 +288,6 @@ Our test statistic is the difference in accuracy between the two groups, a large
 
 We use a permutation test to generate the null distribution by randomly shuffling the side labels while keeping the predictions and true outcomes fixed. This approach is appropriate because it simulates the scenario where side membership has no relationship to model performance. We use a significance level of 0.05.
 
-Since the p-value (0.591) is much larger than our significance level of 0.05, we fail to reject the null hypothesis. There is no statistically significant evidence that our model performs worse for Red-side teams than for Blue-side teams.
+Observed difference in accuracy (Blue − Red) was −0.0025 (about −0.25 percentage points). Since the p-value (0.591) is much larger than our significance level of 0.05, we fail to reject the null hypothesis. There is no statistically significant evidence that our model performs worse for Red-side teams than for Blue-side teams.
 
 Based on this analysis, our final model appears to be fair with respect to side, as its predictive accuracy is similar for both groups. While small differences in accuracy exist, they are consistent with what we would expect due to random variation rather than systematic bias.
