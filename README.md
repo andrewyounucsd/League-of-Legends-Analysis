@@ -212,3 +212,36 @@ We used the difference in win rates between the two groups (teams that secured A
 The observed difference in win rates between teams that secured Atakhan and teams that did not was 0.572, indicating that teams securing Atakhan won approximately 57 percentage points more often than teams that did not. Using a permutation test with the difference in win rates as the test statistic, we obtained a p-value of 0.0.
 
 Because this p-value is well below the chosen significance level of 0.05, we reject the null hypothesis. This result provides strong evidence that the difference in win rates between the two groups is unlikely to be due to random chance alone. While this analysis does not establish a causal relationship, it suggests a strong association between securing Atakhan and a higher likelihood of winning in professional League of Legends matches.
+
+## Framing a Prediction Problem
+
+Our prediction task is a binary classification problem, where the goal is to predict whether a team wins or loses a professional League of Legends match. The response variable is `result`, with a value of 1 representing a win and 0 representing a loss. We chose this variable because match outcome is the clearest and most meaningful measure of success in League of Legends, and it directly connects to our main research question about what factors are associated with winning games.
+
+At the time of prediction, we assume we only have access to in-game, team-level information available by 20 minutes, since Atakhan spawns at that point in the game. As a result, our model is trained using features such as side, whether Atakhan was secured, kills at 20 minutes, gold at 20 minutes, and experience difference at 20 minutes. All of these are values that would realistically be known before the game ends. We intentionally exclude any variables that rely on the final outcome of the match in order to avoid data leakage.
+
+To evaluate our model, we use accuracy as the performance metric. Accuracy makes sense here because wins and losses are fairly balanced in the dataset, and there isn’t a strong reason to treat false positives or false negatives as more costly than the other. Although metrics like precision, recall, or F1-score could also be used, they are more useful in cases with class imbalance or when one type of error matters more. We compute accuracy on a held-out test set using a 70/30 train–test split, where 70% of the data is used for training and 30% is used for evaluation. Overall, accuracy provides a simple and interpretable way to measure how well our model performs on unseen data.
+
+
+## Baseline Model
+
+For my baseline model, I built a logistic regression classifier to predict whether a team wins or loses a professional League of Legends match. Since the response variable result is binary (1 = win, 0 = loss), logistic regression is a natural and interpretable starting point.
+
+The model uses the following features, all of which would be known by 20 minutes into the game (the time when Atakhan spawns):
+
+- Nominal Features (1):
+    - `side` (blue or red side)
+- Qualitative Features (4):
+    - `atakhans` (whether the team secured it)
+    - `killsat20` (number of kills at 20 minutes)
+    - `goldat20` (total team gold at 20 minutes)
+    - `xpdiffat20` (experience difference at 20 minutes)
+
+There are no ordinal features in this model.
+
+To prepare the data, I used a ColumnTransformer within a single sklearn Pipeline. The side feature was one-hot encoded using OneHotEncoder since it is categorical. The quantitative features were passed through a SimpleImputer with a median strategy to handle missing values. All preprocessing steps were fit only on the training data to avoid data leakage.
+
+I split the data into training and testing sets using a 70/30 train–test split, stratified on the response variable to preserve the win/loss balance. I then trained the model on the training set and evaluated it on the held-out test set using accuracy as the evaluation metric.
+
+The baseline model achieved an accuracy of approximately 82.5% on the test set. I believe this is a solid baseline result, especially given the simplicity of the model and the limited feature set. While the model is not perfect, it performs significantly better than random guessing and captures meaningful relationships between early-game team performance (gold, kills, experience) and match outcomes. This makes it a strong starting point for further feature engineering and model improvement in later steps.
+
+## Final Model
