@@ -46,9 +46,18 @@ The dataset provided by Orcale's Elixir focuses on professional League of Legend
 
 - `killsat20`: Represents the amount of kills each player/team had 20 minutes into the match.
 
-For this dataset, we will be focusing on games in which the matches were completed, meaning we will get rid of all the rows where the games did not finish, leaving us with 109,128 rows.
 
 
 ##Data Cleaning and Exploratory Data Analysis
 ###Data Cleaning
-As stated previously, only 14 columns are being kept as they are the only ones that are relevant to the analysis.
+As stated previously, only 14 columns are being kept as they are the only ones that are relevant to the analysis. In this analysis we will be focusing on games in which the matches were completed, meaning we will get rid of all the rows where the games did not finish which was done by making sure all values in the column `datacompleteness` were complete. 
+
+| gameid           | datacompleteness   | league   | position   | side   |   result |   teamkills |   atakhans |   opp_atakhans |   totalgold |   goldat20 |   opp_goldat20 |   xpdiffat20 |   killsat20 |
+|:-----------------|:-------------------|:---------|:-----------|:-------|---------:|------------:|-----------:|---------------:|------------:|-----------:|---------------:|-------------:|------------:|
+| LOLTMNT03_179647 | complete           | LFL2     | top        | Blue   |        0 |           3 |        nan |            nan |       10668 |       6473 |           7012 |         -490 |           1 |
+| LOLTMNT03_179647 | complete           | LFL2     | jng        | Blue   |        0 |           3 |        nan |            nan |        7429 |       5668 |           7357 |        -1339 |           0 |
+| LOLTMNT03_179647 | complete           | LFL2     | mid        | Blue   |        0 |           3 |        nan |            nan |        9032 |       6332 |           7990 |        -1439 |           0 |
+| LOLTMNT03_179647 | complete           | LFL2     | bot        | Blue   |        0 |           3 |        nan |            nan |        9407 |       6782 |           8489 |        -1248 |           1 |
+| LOLTMNT03_179647 | complete           | LFL2     | sup        | Blue   |        0 |           3 |        nan |            nan |        5719 
+
+we will mainly be taking a look at the team-rows represented in the `position` columns as "team". 
