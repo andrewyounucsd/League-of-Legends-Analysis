@@ -106,9 +106,9 @@ For example, the missingness of atakhans is largely structural, as Atakhan is a 
 
 The `atakhans` column contains missing values primarily because Atakhan is a team-level objective, and therefore undefined for player-level rows. This suggests the missingness is structural rather than NMAR.
 
-To verify whether missingness depends on other observed variables, I conducted permutation tests using the variance of missingness rates across groups as the test statistic. Specifically, we tested whether the missingness of `atakhans` depends on league or side.
+To verify whether missingness depends on other observed variables, we conducted permutation tests using the variance of missingness rates across groups as the test statistic. Specifically, we tested whether the missingness of `atakhans` depends on league or side.
 
-First, I will show you the Missingness vs. League and then the Missingness vs. Side
+First, we will show you the Missingness vs. League and then the Missingness vs. Side
 
 Null Hypothesis: The missingness of the `atakhans` column is independent of league. Any observed differences in missingness rates across leagues are due to random chance.
 
@@ -159,7 +159,7 @@ Alternative Hypothesis: The missingness of the `atakhans` column depends on leag
 | VCS         |                0.0155492  |               0.0154959  |
 | WLDs        |                0.00926334 |               0.00923158 |
 
-I used the variance of missingness rates across leagues as the test statistic, since larger variance would indicate league-specific missingness patterns.
+We used the variance of missingness rates across leagues as the test statistic, since larger variance would indicate league-specific missingness patterns.
 
 The observed test statistic was 7.61 × 10⁻⁷, with a p-value of 1.0. The permutation distribution below shows that the observed statistic is well within the range expected under the null hypothesis.
 <iframe
@@ -171,7 +171,7 @@ The observed test statistic was 7.61 × 10⁻⁷, with a p-value of 1.0. The per
 
 Because the p-value is much larger than a typical significance level (e.g. 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that missingness in `atakhans` depends on league. Instead, missingness appears consistent across leagues, supporting the interpretation that it is structural.
 
-Next, I examined whether the missingness of the `atakhans` column depends on a team’s side (Blue or Red). As before, I conducted a permutation test using the variance of missingness rates across groups as the test statistic. Larger variance would indicate side-specific missingness patterns.
+Next, we examined whether the missingness of the `atakhans` column depends on a team’s side (Blue or Red). As before, we conducted a permutation test using the variance of missingness rates across groups as the test statistic. Larger variance would indicate side-specific missingness patterns.
 
 Null Hypothesis: The missingness of the `atakhans` column is independent of side. Any observed differences in missingness rates between Blue side and Red side are due to random chance.
 
@@ -191,3 +191,13 @@ The observed test statistic for this permutation test was 0, and the resulting p
 ></iframe>
 
 Because the p-value is much larger than a standard significance level (e.g., 0.05), we fail to reject the null hypothesis. This indicates there is no evidence that the missingness of `atakhans` depends on side. In other words, missingness appears evenly distributed between Blue and Red sides, further supporting the conclusion that the missingness is structural rather than driven by gameplay factors.
+
+## Hypothesis Testing
+
+To investigate whether securing Atakhan is associated with match outcomes in professional League of Legends games, we conducted a permutation test comparing win rates between teams that secured Atakhan and teams that did not.
+
+Null Hypothesis: The probability of winning a match is the same for teams that secure Atakhan and teams that do not secure Atakhan. Any observed difference in win rates is due to random chance
+
+Alternative Hypothesis: The probability of winning a match differs between teams that secure Atakhan and teams that do not secure Atakhan.
+
+We used the difference in win rates between the two groups (teams that secured Atakhan minus teams that did not) as the test statistic. This statistic is appropriate because our research question directly asks whether securing Atakhan is associated with a higher likelihood of winning, and win rate is a natural and interpretable measure of match success. We used a significance level of 0.05.
